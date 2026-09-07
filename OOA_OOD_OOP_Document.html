@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="th" xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirCare Pro – เอกสาร OOA OOD OOP</title>
+<style>
+  body { font-family: 'TH Sarabun New', 'Sarabun', Arial, sans-serif; font-size: 16pt; color: #1a1a2e; background: #fff; margin: 0; padding: 0; line-height: 1.8; }
+  .cover-page { page-break-after: always; text-align: center; padding: 80px 60px; background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%); color: white; min-height: 800px; }
+  .cover-title { font-size: 36pt; font-weight: bold; color: #4fc3f7; margin: 20px 0 10px; }
+  .cover-subtitle { font-size: 22pt; color: #81d4fa; margin: 0 0 30px; }
+  .cover-badge { display: inline-block; background: rgba(79,195,247,0.2); border: 2px solid #4fc3f7; border-radius: 30px; padding: 8px 30px; font-size: 14pt; color: #4fc3f7; margin: 8px; }
+  .cover-info { margin-top: 60px; font-size: 14pt; color: #b0bec5; line-height: 2.2; }
+  .cover-info strong { color: #81d4fa; }
+  .cover-divider { width: 200px; height: 3px; background: linear-gradient(90deg, transparent, #4fc3f7, transparent); margin: 30px auto; }
+  .toc-page { page-break-after: always; padding: 60px 80px; }
+  .toc-title { font-size: 26pt; font-weight: bold; color: #0f3460; border-bottom: 4px solid #4fc3f7; padding-bottom: 15px; margin-bottom: 30px; }
+  .toc-item { display: flex; justify-content: space-between; border-bottom: 1px dotted #b0bec5; padding: 10px 0; font-size: 14pt; }
+  .toc-item.level2 { padding-left: 30px; font-size: 13pt; color: #455a64; border-bottom: 1px dotted #e0e0e0; }
+  .toc-section-label { font-weight: bold; color: #0288d1; }
+  .section-divider { page-break-before: always; page-break-after: always; text-align: center; padding: 120px 60px; background: linear-gradient(135deg, #0f3460, #16213e); color: white; min-height: 600px; }
+  .section-number { font-size: 80pt; font-weight: bold; color: rgba(79,195,247,0.2); line-height: 1; margin-bottom: 20px; }
+  .section-title-big { font-size: 42pt; font-weight: bold; color: #4fc3f7; margin: 0 0 15px; }
+  .section-subtitle-big { font-size: 20pt; color: #81d4fa; margin: 0; }
+  .content-page { padding: 50px 80px; page-break-after: always; }
+  h1 { font-size: 28pt; color: #0f3460; border-bottom: 4px solid #4fc3f7; padding-bottom: 15px; margin: 0 0 30px; }
+  h2 { font-size: 22pt; color: #0288d1; border-left: 6px solid #4fc3f7; padding: 10px 10px 10px 20px; margin: 35px 0 20px; background: linear-gradient(90deg, rgba(79,195,247,0.1), transparent); border-radius: 0 8px 8px 0; }
+  h3 { font-size: 18pt; color: #01579b; margin: 25px 0 15px; border-bottom: 2px dashed #b0bec5; padding-bottom: 8px; }
+  h4 { font-size: 15pt; color: #0277bd; margin: 20px 0 10px; }
+  p { font-size: 14pt; line-height: 1.9; color: #263238; margin: 10px 0 15px; text-align: justify; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 13pt; }
+  th { background: linear-gradient(135deg, #0f3460, #0288d1); color: white; padding: 12px 15px; text-align: left; font-weight: bold; font-size: 13pt; }
+  td { padding: 10px 15px; border: 1px solid #e0e0e0; vertical-align: top; line-height: 1.6; }
+  tr:nth-child(even) td { background: #f5f9ff; }
+  .info-box { background: linear-gradient(135deg, #e3f2fd, #f3f8ff); border-left: 5px solid #0288d1; border-radius: 8px; padding: 20px 25px; margin: 20px 0; font-size: 13pt; }
+  .success-box { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border-left: 5px solid #2e7d32; border-radius: 8px; padding: 20px 25px; margin: 20px 0; font-size: 13pt; }
+  .code-block { background: #1e2a3a; color: #a8d5f5; border-radius: 10px; padding: 20px 25px; margin: 20px 0; font-family: 'Courier New', Consolas, monospace; font-size: 11pt; line-height: 1.6; border-left: 4px solid #4fc3f7; }
+  .code-keyword { color: #81d4fa; font-weight: bold; }
+  .code-class { color: #ffcc02; font-weight: bold; }
+  .code-comment { color: #78909c; font-style: italic; }
+  .code-string { color: #80cbc4; }
+  .code-method { color: #80deea; }
+  .code-access { color: #ce93d8; }
+  .class-diagram { background: #f8faff; border: 2px solid #90caf9; border-radius: 12px; padding: 25px; margin: 25px 0; text-align: center; }
+  .class-box { display: inline-block; background: white; border: 2px solid #0288d1; border-radius: 8px; margin: 10px; min-width: 200px; vertical-align: top; box-shadow: 0 4px 12px rgba(2,136,209,0.15); }
+  .class-header { background: linear-gradient(135deg, #0288d1, #0f3460); color: white; padding: 10px 15px; font-weight: bold; font-size: 13pt; border-radius: 6px 6px 0 0; }
+  .class-header.abstract { background: linear-gradient(135deg, #6a1b9a, #4a148c); font-style: italic; }
+  .class-body { padding: 12px; font-size: 11pt; text-align: left; border-top: 1px solid #e0e0e0; color: #263238; line-height: 1.7; }
+  .attr { color: #0288d1; }
+  .method { color: #2e7d32; }
+  .actor-box { background: #f3e5f5; border: 2px solid #7b1fa2; border-radius: 12px; padding: 20px; text-align: center; min-width: 150px; font-size: 13pt; display: inline-block; margin: 10px; }
+  .actor-icon { font-size: 36pt; display: block; margin-bottom: 8px; }
+  .use-case-item { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 20px; padding: 8px 20px; margin: 6px 0; font-size: 12pt; display: block; }
+  .badge { display: inline-block; border-radius: 20px; padding: 4px 14px; font-size: 11pt; font-weight: bold; margin: 3px; }
+  .badge-blue { background: #e3f2fd; color: #0288d1; border: 1px solid #90caf9; }
+  .badge-green { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+  .badge-orange { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+  .badge-purple { background: #f3e5f5; color: #6a1b9a; border: 1px solid #ce93d8; }
+  .principle-card { border: 2px solid #90caf9; border-radius: 12px; padding: 20px 25px; margin: 20px 0; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+  .principle-title { font-size: 16pt; font-weight: bold; color: #0288d1; margin: 0 0 12px; }
+  ol li, ul li { font-size: 14pt; line-height: 1.9; margin-bottom: 8px; color: #263238; }
+  .flow-step { display: flex; align-items: flex-start; gap: 15px; margin: 12px 0; padding: 12px 15px; background: #f8faff; border-radius: 8px; border: 1px solid #e3f2fd; }
+  .step-num { background: linear-gradient(135deg, #0288d1, #0f3460); color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13pt; flex-shrink: 0; }
+  .step-text { font-size: 13pt; line-height: 1.7; color: #263238; padding-top: 3px; }
+  .label-small { font-size: 11pt; color: #78909c; font-style: italic; }
+  .doc-footer { text-align: center; font-size: 11pt; color: #78909c; border-top: 2px solid #e0e0e0; padding-top: 15px; margin-top: 40px; }
+  @media print { .page-break { page-break-after: always; } }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <div style="font-size:80pt; margin-bottom:20px;">❄️</div>
+  <div class="cover-title">AirCare Pro</div>
+  <div class="cover-subtitle">ระบบจองคิวล้างเครื่องปรับอากาศ อำเภอบ้านโป่ง</div>
+  <div class="cover-divider"></div>
+  <div>
+    <span class="cover-badge">📊 OOA</span>
+    <span class="cover-badge">🏗️ OOD</span>
+    <span class="cover-badge">💻 OOP</span>
+  </div>
+  <div class="cover-divider"></div>
+  <div class="cover-info">
+    <strong>เอกสารวิเคราะห์และออกแบบเชิงวัตถุ</strong><br>
+    Object-Oriented Analysis, Design &amp; Programming<br><br>
+    <strong>โปรเจกต์:</strong> Air Cleaning System Pro<br>
+    <strong>เทคโนโลยี:</strong> PHP 8.x, MySQL, HTML5, CSS3, JavaScript<br>
+    <strong>พื้นที่ให้บริการ:</strong> อำเภอบ้านโป่ง จังหวัดราชบุรี<br>
+    <strong>วันที่จัดทำ:</strong> กันยายน 2569
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-page">
+  <div class="toc-title">📋 สารบัญ (Table of Contents)</div>
+  <div class="toc-item"><span class="toc-section-label">ส่วนที่ 1 – OOA: Object-Oriented Analysis</span><span>3</span></div>
+  <div class="toc-item level2"><span>1.1 บทนำและวัตถุประสงค์ของระบบ</span><span>3</span></div>
+  <div class="toc-item level2"><span>1.2 ผู้ใช้งาน (Actors) และบทบาท</span><span>4</span></div>
+  <div class="toc-item level2"><span>1.3 Use Case Diagram</span><span>4</span></div>
+  <div class="toc-item level2"><span>1.4 Use Case Descriptions</span><span>5</span></div>
+  <div class="toc-item level2"><span>1.5 Domain Objects (วัตถุในโดเมน)</span><span>6</span></div>
+  <div class="toc-item" style="margin-top:15px;"><span class="toc-section-label">ส่วนที่ 2 – OOD: Object-Oriented Design</span><span>7</span></div>
+  <div class="toc-item level2"><span>2.1 สถาปัตยกรรมระบบ (System Architecture)</span><span>7</span></div>
+  <div class="toc-item level2"><span>2.2 Design Class Diagram</span><span>8</span></div>
+  <div class="toc-item level2"><span>2.3 Class Relationships</span><span>9</span></div>
+  <div class="toc-item level2"><span>2.4 Sequence Diagrams</span><span>10</span></div>
+  <div class="toc-item level2"><span>2.5 Database Schema Design</span><span>11</span></div>
+  <div class="toc-item level2"><span>2.6 โครงสร้างไฟล์และโมดูล</span><span>12</span></div>
+  <div class="toc-item" style="margin-top:15px;"><span class="toc-section-label">ส่วนที่ 3 – OOP: Object-Oriented Programming</span><span>13</span></div>
+  <div class="toc-item level2"><span>3.1 หลักการ 4 ประการของ OOP</span><span>13</span></div>
+  <div class="toc-item level2"><span>3.2 Encapsulation – การห่อหุ้มข้อมูล</span><span>14</span></div>
+  <div class="toc-item level2"><span>3.3 Inheritance – การสืบทอดคลาส</span><span>15</span></div>
+  <div class="toc-item level2"><span>3.4 Polymorphism – พหุสัณฐาน</span><span>16</span></div>
+  <div class="toc-item level2"><span>3.5 Abstraction – การซ่อนรายละเอียด</span><span>17</span></div>
+  <div class="toc-item level2"><span>3.6 สรุปการนำ OOP ไปใช้</span><span>18</span></div>
+</div>
+
+<!-- SECTION 1: OOA -->
+<div class="section-divider">
+  <div class="section-number">1</div>
+  <div class="section-title-big">OOA</div>
+  <div class="section-subtitle-big">Object-Oriented Analysis<br>การวิเคราะห์เชิงวัตถุ</div>
+</div>
+
+<div class="content-page">
+  <h1>ส่วนที่ 1: OOA – Object-Oriented Analysis (การวิเคราะห์เชิงวัตถุ)</h1>
+
+  <h2>1.1 บทนำและวัตถุประสงค์ของระบบ</h2>
+  <div class="info-box">
+    <strong>🎯 ชื่อระบบ:</strong> AirCare Pro – ระบบจองคิวล้างเครื่องปรับอากาศ<br>
+    <strong>📍 พื้นที่ให้บริการ:</strong> อำเภอบ้านโป่ง จังหวัดราชบุรี (13 ตำบล)<br>
+    <strong>💻 แพลตฟอร์ม:</strong> Web Application (PHP + MySQL) รองรับมือถือ, แท็บเล็ต, คอมพิวเตอร์
+  </div>
+
+  <h3>วัตถุประสงค์หลัก (Main Objectives)</h3>
+  <ol>
+    <li>พัฒนาระบบจองคิวล้างแอร์ออนไลน์ที่ลูกค้าสามารถจองได้ตลอด 24 ชั่วโมง</li>
+    <li>ช่วยให้ช่างเทคนิคบริหารจัดการคิวงานได้อย่างมีประสิทธิภาพ</li>
+    <li>ผู้ดูแลระบบสามารถดูรายงาน สถิติ และแดชบอร์ดได้แบบ Real-time</li>
+    <li>ระบุตำแหน่งบ้านลูกค้าด้วย Google Maps ภายในอำเภอบ้านโป่ง</li>
+    <li>ออกบิล/ใบเสร็จดิจิทัลหลังเสร็จงาน</li>
+    <li>แยกสิทธิ์การเข้าถึงระหว่างลูกค้า ช่าง และผู้ดูแลระบบ</li>
+  </ol>
+
+  <h3>ขอบเขตของระบบ (System Scope)</h3>
+  <table>
+    <tr><th>หัวข้อ</th><th>รายละเอียด</th></tr>
+    <tr><td><strong>อยู่ในขอบเขต</strong></td><td>การจองคิว, การจัดการช่าง, การออกบิล, Google Maps, รายงานแดชบอร์ด, การปิดงาน</td></tr>
+    <tr><td><strong>นอกขอบเขต</strong></td><td>ระบบสต็อกอะไหล่, การนัดซ่อมขนาดใหญ่, ระบบ ERP</td></tr>
+    <tr><td><strong>ผู้ใช้งานหลัก</strong></td><td>ลูกค้า (Customer), ช่างเทคนิค (Technician), ผู้ดูแลระบบ (Admin)</td></tr>
+    <tr><td><strong>เทคโนโลยี</strong></td><td>PHP 8.x OOP, MySQL 8.0, Google Maps Embed API, Chart.js</td></tr>
+  </table>
+
+  <h2>1.2 ผู้ใช้งาน (Actors) และบทบาท</h2>
+  <table>
+    <tr><th>Actor</th><th>ชื่อบทบาท</th><th>สิทธิ์การเข้าถึง</th><th>หน้าที่หลัก</th></tr>
+    <tr>
+      <td style="text-align:center; font-size:28pt;">👤</td>
+      <td><strong>Customer</strong><br><span class="label-small">ลูกค้า</span></td>
+      <td><span class="badge badge-green">จองคิว</span> <span class="badge badge-blue">ดูสถานะ</span> <span class="badge badge-orange">รับบิล</span></td>
+      <td>กรอกข้อมูลส่วนตัว, เลือกช่าง, จองนัด, ระบุที่อยู่ผ่าน Google Maps, รับบิล</td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:28pt;">🔧</td>
+      <td><strong>Technician</strong><br><span class="label-small">ช่างเทคนิค</span></td>
+      <td><span class="badge badge-blue">ดูคิวงาน</span> <span class="badge badge-green">ปิดงาน</span> <span class="badge badge-orange">รายงาน</span></td>
+      <td>ดูรายการงาน, รับงาน, บันทึกผลการทำงาน, ปิดงาน</td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:28pt;">🛡️</td>
+      <td><strong>Admin</strong><br><span class="label-small">ผู้ดูแลระบบ</span></td>
+      <td><span class="badge badge-purple">เต็มสิทธิ์</span></td>
+      <td>จัดการช่าง, ดูแดชบอร์ด, รายงานสถิติ, ยืนยันการชำระเงิน</td>
+    </tr>
+  </table>
+
+  <h2>1.3 Use Case Diagram</h2>
+  <div class="class-diagram">
+    <h4 style="color:#0f3460; margin-top:0;">🔷 Use Case Diagram – AirCare Pro System</h4>
+    <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; text-align:left;">
+      <div>
+        <div class="actor-box">
+          <span class="actor-icon">👤</span>
+          <strong>Customer</strong><br>
+          <span class="label-small">ลูกค้า</span>
+        </div>
+        <div style="margin-top:15px;">
+          <span class="use-case-item">UC01: กรอกข้อมูลส่วนตัว</span>
+          <span class="use-case-item">UC02: เลือกประเภทเครื่องแอร์</span>
+          <span class="use-case-item">UC03: ระบุที่อยู่บน Google Maps</span>
+          <span class="use-case-item">UC04: เลือกช่างเทคนิค</span>
+          <span class="use-case-item">UC05: เลือกวัน-เวลานัดหมาย</span>
+          <span class="use-case-item">UC06: ยืนยันการจองคิว</span>
+          <span class="use-case-item">UC07: ตรวจสอบสถานะการจอง</span>
+          <span class="use-case-item">UC08: รับ/พิมพ์บิล (Receipt)</span>
+        </div>
+      </div>
+      <div>
+        <div class="actor-box" style="background:#e3f2fd; border-color:#0288d1;">
+          <span class="actor-icon">🔧</span>
+          <strong>Technician</strong><br>
+          <span style="font-size:11pt; color:#0288d1;">ช่างเทคนิค</span>
+        </div>
+        <div style="margin-top:15px;">
+          <span class="use-case-item">UC09: ดูคิวงานที่ได้รับมอบหมาย</span>
+          <span class="use-case-item">UC10: ดูแผนที่บ้านลูกค้า</span>
+          <span class="use-case-item">UC11: เริ่มต้นงาน</span>
+          <span class="use-case-item">UC12: บันทึกผลการล้างแอร์</span>
+          <span class="use-case-item">UC13: บันทึกค่า PSI / กระแสไฟฟ้า</span>
+          <span class="use-case-item">UC14: ปิดงาน / เสร็จสิ้น</span>
+        </div>
+      </div>
+      <div>
+        <div class="actor-box" style="background:#fce4ec; border-color:#c62828;">
+          <span class="actor-icon">🛡️</span>
+          <strong>Admin</strong><br>
+          <span style="font-size:11pt; color:#c62828;">ผู้ดูแลระบบ</span>
+        </div>
+        <div style="margin-top:15px;">
+          <span class="use-case-item">UC15: เข้าสู่ระบบ / ออกจากระบบ</span>
+          <span class="use-case-item">UC16: ดูแดชบอร์ดภาพรวม</span>
+          <span class="use-case-item">UC17: จัดการข้อมูลช่างเทคนิค</span>
+          <span class="use-case-item">UC18: จัดการใบจอง/อนุมัติ</span>
+          <span class="use-case-item">UC19: ยืนยันการชำระเงิน</span>
+          <span class="use-case-item">UC20: ดูรายงานสถิติและกราฟ</span>
+          <span class="use-case-item">UC21: ออกรายงาน/บิล</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-page">
+  <h2>1.4 Use Case Descriptions (รายละเอียด Use Case)</h2>
+
+  <h3>UC06: ยืนยันการจองคิว (สำคัญที่สุด)</h3>
+  <table>
+    <tr><th width="25%">หัวข้อ</th><th>รายละเอียด</th></tr>
+    <tr><td><strong>Use Case ID</strong></td><td>UC06</td></tr>
+    <tr><td><strong>ชื่อ</strong></td><td>ยืนยันการจองคิวล้างแอร์</td></tr>
+    <tr><td><strong>Actor หลัก</strong></td><td>Customer (ลูกค้า)</td></tr>
+    <tr><td><strong>เงื่อนไขก่อน</strong></td><td>ลูกค้ากรอกข้อมูล, เลือกช่าง, เลือกวันเวลา และระบุที่อยู่แล้ว</td></tr>
+    <tr><td><strong>เงื่อนไขหลัง</strong></td><td>มีการสร้าง ServiceOrder ใหม่ในระบบ พร้อม Booking Code เฉพาะ</td></tr>
+    <tr><td><strong>กระบวนการหลัก</strong></td>
+      <td>1. ลูกค้ากดปุ่ม "ยืนยันการจอง"<br>2. ระบบตรวจสอบความถูกต้องของข้อมูล<br>
+          3. ระบบสร้าง Customer object<br>4. ระบบสร้าง ServiceOrder พร้อม Booking Code<br>
+          5. ระบบบันทึกพิกัด GPS ของบ้านลูกค้า<br>6. ระบบส่งข้อมูลไปยัง BookingManager<br>
+          7. แสดงหน้ายืนยัน + บิลชั่วคราว</td>
+    </tr>
+    <tr><td><strong>กระบวนการทางเลือก</strong></td><td>หากข้อมูลไม่ครบ → แสดงข้อผิดพลาด และให้กรอกใหม่</td></tr>
+  </table>
+
+  <h3>UC14: ปิดงาน / เสร็จสิ้น</h3>
+  <table>
+    <tr><th width="25%">หัวข้อ</th><th>รายละเอียด</th></tr>
+    <tr><td><strong>Use Case ID</strong></td><td>UC14</td></tr>
+    <tr><td><strong>ชื่อ</strong></td><td>ปิดงาน – บันทึกผลการล้างแอร์และปิดใบจอง</td></tr>
+    <tr><td><strong>Actor หลัก</strong></td><td>Technician / Admin</td></tr>
+    <tr><td><strong>เงื่อนไขก่อน</strong></td><td>ServiceOrder มีสถานะ "กำลังดำเนินการ"</td></tr>
+    <tr><td><strong>เงื่อนไขหลัง</strong></td><td>ServiceOrder → "เสร็จสิ้น", Payment → "ชำระแล้ว", ServiceReport บันทึก</td></tr>
+    <tr><td><strong>กระบวนการหลัก</strong></td>
+      <td>1. ช่างกรอก ServiceReport (ผลการล้าง, PSI, กระแสไฟฟ้า)<br>
+          2. ระบบเรียก ServiceOrder.completeOrder()<br>3. ระบบเรียก Payment.markAsPaid()<br>
+          4. ระบบออกบิลใบเสร็จอัตโนมัติ<br>5. สถานะ Order เปลี่ยนเป็น "เสร็จสิ้น"</td>
+    </tr>
+  </table>
+
+  <h2>1.5 Domain Objects (วัตถุในโดเมน)</h2>
+  <table>
+    <tr><th>#</th><th>Domain Object</th><th>คำอธิบาย</th><th>Attributes สำคัญ</th></tr>
+    <tr><td>1</td><td><strong>User</strong></td><td>บุคคลในระบบ (Abstract Base)</td><td>id, name, phone, email</td></tr>
+    <tr><td>2</td><td><strong>Customer</strong></td><td>ลูกค้าที่จองบริการ</td><td>address, subdistrict, latitude, longitude</td></tr>
+    <tr><td>3</td><td><strong>Technician</strong></td><td>ช่างเทคนิคล้างแอร์</td><td>skill, status, rating, experience, avatar</td></tr>
+    <tr><td>4</td><td><strong>Admin</strong></td><td>ผู้ดูแลระบบ</td><td>username, password (hash)</td></tr>
+    <tr><td>5</td><td><strong>AirConditioner</strong></td><td>เครื่องแอร์ของลูกค้า</td><td>brand, model, type, capacity, location</td></tr>
+    <tr><td>6</td><td><strong>ServiceOrder</strong></td><td>ใบจองคิวล้างแอร์</td><td>bookingCode, serviceDate, status, totalPrice, latitude, longitude</td></tr>
+    <tr><td>7</td><td><strong>ServiceReport</strong></td><td>ผลการให้บริการของช่าง</td><td>cleaningResult, gasPsiBefore, gasPsiAfter, electricCurrent</td></tr>
+    <tr><td>8</td><td><strong>Payment</strong></td><td>การชำระเงินค่าบริการ</td><td>amount, paymentMethod, paymentStatus, paymentDate</td></tr>
+    <tr><td>9</td><td><strong>BookingManager</strong></td><td>ตัวจัดการกระบวนการจอง</td><td>ประสานงานระหว่างวัตถุทั้งหมด</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 2: OOD -->
+<div class="section-divider">
+  <div class="section-number">2</div>
+  <div class="section-title-big">OOD</div>
+  <div class="section-subtitle-big">Object-Oriented Design<br>การออกแบบเชิงวัตถุ</div>
+</div>
+
+<div class="content-page">
+  <h1>ส่วนที่ 2: OOD – Object-Oriented Design (การออกแบบเชิงวัตถุ)</h1>
+
+  <h2>2.1 สถาปัตยกรรมระบบ (3-Layer Architecture)</h2>
+  <div class="class-diagram">
+    <h4 style="color:#0f3460; margin-top:0;">🏗️ System Architecture – AirCare Pro</h4>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+      <div style="background:linear-gradient(135deg,#0288d1,#01579b); color:white; padding:15px 40px; border-radius:8px; font-weight:bold; font-size:13pt; width:70%; text-align:center;">
+        🖥️ Presentation Layer<br><span style="font-size:11pt; font-weight:normal;">index.php, admin/, receipt.php, track.php</span>
+      </div>
+      <div style="font-size:20pt; color:#4fc3f7;">↕️</div>
+      <div style="background:linear-gradient(135deg,#0f3460,#1565c0); color:white; padding:15px 40px; border-radius:8px; font-weight:bold; font-size:13pt; width:70%; text-align:center;">
+        ⚙️ Business Logic Layer (Service Layer)<br><span style="font-size:11pt; font-weight:normal;">BookingManager.php, DashboardAnalytics.php</span>
+      </div>
+      <div style="font-size:20pt; color:#4fc3f7;">↕️</div>
+      <div style="background:linear-gradient(135deg,#1a237e,#0d47a1); color:white; padding:15px 40px; border-radius:8px; font-weight:bold; font-size:13pt; width:70%; text-align:center;">
+        📦 Domain Objects Layer<br><span style="font-size:11pt; font-weight:normal;">User, Customer, Technician, ServiceOrder, Payment, ServiceReport, AirConditioner</span>
+      </div>
+      <div style="font-size:20pt; color:#4fc3f7;">↕️</div>
+      <div style="background:linear-gradient(135deg,#263238,#37474f); color:white; padding:15px 40px; border-radius:8px; font-weight:bold; font-size:13pt; width:70%; text-align:center;">
+        🗄️ Data Layer – MySQL 8.0<br><span style="font-size:11pt; font-weight:normal;">config/database.php (PDO Connection)</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>2.2 Design Class Diagram</h2>
+  <div class="class-diagram">
+    <h4 style="color:#0f3460; margin-top:0;">📐 Design Class Diagram</h4>
+    <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; text-align:left;">
+
+      <div class="class-box">
+        <div class="class-header abstract">«abstract» User</div>
+        <div class="class-body">
+          <div class="attr"># id: ?int</div>
+          <div class="attr"># name: string</div>
+          <div class="attr"># phone: string</div>
+          <div class="attr"># email: ?string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getId(): ?int</div>
+          <div class="method">+ getName(): string</div>
+          <div class="method">+ getPhone(): string</div>
+          <div class="method">+ toArray(): array</div>
+          <div style="color:#ce93d8;">«abstract» + getRole(): string</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">Customer extends User</div>
+        <div class="class-body">
+          <div class="attr">- address: string</div>
+          <div class="attr">- subdistrict: string</div>
+          <div class="attr">- latitude: float</div>
+          <div class="attr">- longitude: float</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getAddress(): string</div>
+          <div class="method">+ getLatitude(): float</div>
+          <div class="method">+ setCoordinates(lat,lng): void</div>
+          <div class="method">+ getGoogleMapsUrl(): string</div>
+          <div class="method">+ getRole(): string</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">Technician extends User</div>
+        <div class="class-body">
+          <div class="attr">- skill: string</div>
+          <div class="attr">- status: string</div>
+          <div class="attr">- rating: float</div>
+          <div class="attr">- experience: string</div>
+          <div class="attr">- avatar: string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getSkill(): string</div>
+          <div class="method">+ isAvailable(): bool</div>
+          <div class="method">+ getStatusBadge(): string</div>
+          <div class="method">+ getRole(): string</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">Admin extends User</div>
+        <div class="class-body">
+          <div class="attr">- username: string</div>
+          <div class="attr">- passwordHash: string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getRole(): string</div>
+          <div class="method">+ verifyPassword(pwd): bool</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">AirConditioner</div>
+        <div class="class-body">
+          <div class="attr">- id: ?int</div>
+          <div class="attr">- customerId: int</div>
+          <div class="attr">- brand: string</div>
+          <div class="attr">- model: string</div>
+          <div class="attr">- type: string</div>
+          <div class="attr">- capacity: string</div>
+          <div class="attr">- location: string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getInfo(): string</div>
+          <div class="method">«static» + getBasePriceForType(type): float</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">ServiceOrder</div>
+        <div class="class-body">
+          <div class="attr">- id: ?int</div>
+          <div class="attr">- customerId: int</div>
+          <div class="attr">- technicianId: ?int</div>
+          <div class="attr">- serviceDate: ?string</div>
+          <div class="attr">- status: string</div>
+          <div class="attr">- totalPrice: float</div>
+          <div class="attr">- bookingCode: ?string</div>
+          <div class="attr">- acType: string</div>
+          <div class="attr">- latitude: float</div>
+          <div class="attr">- longitude: float</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ completeOrder(report, payment): void</div>
+          <div class="method">+ calculatePrice(units, price, addon): float</div>
+          <div class="method">+ updateStatus(status): void</div>
+          <div class="method">+ assignTechnician(id): void</div>
+          <div class="method">+ canBeCancelled(): bool</div>
+          <div class="method">+ getStatusBadge(): string</div>
+          <div class="method">+ getFormattedDate(): string</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">Payment</div>
+        <div class="class-body">
+          <div class="attr">- id: ?int</div>
+          <div class="attr">- orderId: int</div>
+          <div class="attr">- amount: float</div>
+          <div class="attr">- paymentMethod: string</div>
+          <div class="attr">- paymentStatus: string</div>
+          <div class="attr">- paymentDate: ?string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ isPaid(): bool</div>
+          <div class="method">+ markAsPaid(date?): void</div>
+          <div class="method">+ getFormattedAmount(): string</div>
+          <div class="method">+ getStatusBadge(): string</div>
+        </div>
+      </div>
+
+      <div class="class-box">
+        <div class="class-header">ServiceReport</div>
+        <div class="class-body">
+          <div class="attr">- id: ?int</div>
+          <div class="attr">- orderId: int</div>
+          <div class="attr">- technicianId: int</div>
+          <div class="attr">- cleaningResult: string</div>
+          <div class="attr">- problemFound: string</div>
+          <div class="attr">- recommendation: string</div>
+          <div class="attr">- gasPsiBefore: ?string</div>
+          <div class="attr">- gasPsiAfter: ?string</div>
+          <div class="attr">- electricCurrent: ?string</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ summary(): string</div>
+          <div class="method">+ toArray(): array</div>
+        </div>
+      </div>
+
+      <div class="class-box" style="border-color:#e91e63;">
+        <div class="class-header" style="background:linear-gradient(135deg,#c62828,#880e4f);">«Service» BookingManager</div>
+        <div class="class-body">
+          <div class="attr">- db: PDO</div>
+          <hr style="border:1px solid #eee; margin:6px 0;">
+          <div class="method">+ getTechnicians(): array</div>
+          <div class="method">+ createBooking(data): array</div>
+          <div class="method">+ getOrderById(id): ?ServiceOrder</div>
+          <div class="method">+ completeJob(id, data): bool</div>
+          <div class="method">+ updateOrderStatus(id, status): bool</div>
+          <div class="method">«static» + getBanPongSubdistricts(): array</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="content-page">
+  <h2>2.3 Class Relationships (ความสัมพันธ์ระหว่างคลาส)</h2>
+
+  <h3>Inheritance (การสืบทอด)</h3>
+  <table>
+    <tr><th>Superclass</th><th>Subclass</th><th>ประเภท</th><th>คำอธิบาย</th></tr>
+    <tr><td><strong>User</strong> (Abstract)</td><td><strong>Customer</strong></td><td>Inheritance</td><td>รับ id, name, phone, email + เพิ่ม address, latitude, longitude</td></tr>
+    <tr><td><strong>User</strong> (Abstract)</td><td><strong>Technician</strong></td><td>Inheritance</td><td>รับ User + เพิ่ม skill, status, rating, experience</td></tr>
+    <tr><td><strong>User</strong> (Abstract)</td><td><strong>Admin</strong></td><td>Inheritance</td><td>รับ User + เพิ่ม username, passwordHash</td></tr>
+  </table>
+
+  <h3>Association / Aggregation</h3>
+  <table>
+    <tr><th>คลาส A</th><th>ความสัมพันธ์</th><th>คลาส B</th><th>Multiplicity</th><th>คำอธิบาย</th></tr>
+    <tr><td>Customer</td><td>Creates</td><td>ServiceOrder</td><td>1 → Many</td><td>ลูกค้า 1 คนมีหลายใบจอง</td></tr>
+    <tr><td>Technician</td><td>Handles</td><td>ServiceOrder</td><td>1 → Many</td><td>ช่าง 1 คนรับงานหลายใบ</td></tr>
+    <tr><td>ServiceOrder</td><td>Has</td><td>ServiceReport</td><td>1 → 1</td><td>ใบจองมีรายงานผล 1 ชุด</td></tr>
+    <tr><td>ServiceOrder</td><td>Has</td><td>Payment</td><td>1 → 1</td><td>ใบจองมีการชำระเงิน 1 รายการ</td></tr>
+    <tr><td>Customer</td><td>Owns</td><td>AirConditioner</td><td>1 → Many</td><td>ลูกค้ามีเครื่องแอร์หลายเครื่อง</td></tr>
+    <tr><td>BookingManager</td><td>Manages</td><td>ServiceOrder</td><td>1 → Many</td><td>ควบคุมการสร้างและจัดการใบจองทั้งหมด</td></tr>
+  </table>
+
+  <h2>2.4 Sequence Diagram – กระบวนการจองคิว</h2>
+  <div class="info-box">
+    <strong>📋 Sequence: ลูกค้าจองคิวล้างแอร์ (UC06)</strong>
+  </div>
+  <div style="background:#f8faff; border:2px solid #90caf9; border-radius:12px; padding:20px; margin:15px 0;">
+    <div class="flow-step"><div class="step-num">1</div><div class="step-text"><strong>Customer</strong> → กรอกแบบฟอร์มใน index.php (ชื่อ, โทร, ที่อยู่, ประเภทแอร์, วันเวลา, ช่างที่เลือก)</div></div>
+    <div class="flow-step"><div class="step-num">2</div><div class="step-text"><strong>Browser</strong> → ส่ง POST request ไปยัง booking_action.php</div></div>
+    <div class="flow-step"><div class="step-num">3</div><div class="step-text"><strong>booking_action.php</strong> → สร้าง BookingManager($db)</div></div>
+    <div class="flow-step"><div class="step-num">4</div><div class="step-text"><strong>BookingManager</strong> → สร้าง Customer object จากข้อมูลฟอร์ม</div></div>
+    <div class="flow-step"><div class="step-num">5</div><div class="step-text"><strong>BookingManager</strong> → บันทึก Customer ลง DB (INSERT customers)</div></div>
+    <div class="flow-step"><div class="step-num">6</div><div class="step-text"><strong>BookingManager</strong> → สร้าง ServiceOrder object พร้อม Booking Code (AC-XXXXX)</div></div>
+    <div class="flow-step"><div class="step-num">7</div><div class="step-text"><strong>ServiceOrder</strong> → คำนวณราคาด้วย calculatePrice(units, basePrice)</div></div>
+    <div class="flow-step"><div class="step-num">8</div><div class="step-text"><strong>BookingManager</strong> → บันทึก ServiceOrder ลง DB (INSERT service_orders)</div></div>
+    <div class="flow-step"><div class="step-num">9</div><div class="step-text"><strong>BookingManager</strong> → สร้าง Payment object (paymentStatus = 'รอตรวจสอบ')</div></div>
+    <div class="flow-step"><div class="step-num">10</div><div class="step-text"><strong>ระบบ</strong> → Redirect ไปหน้ายืนยันพร้อม Booking Code + Google Maps URL</div></div>
+  </div>
+
+  <h2>2.5 Database Schema Design</h2>
+  <table>
+    <tr><th>ตาราง</th><th>คลาสที่เกี่ยวข้อง</th><th>คอลัมน์หลัก</th><th>ความสัมพันธ์</th></tr>
+    <tr><td><strong>customers</strong></td><td>Customer</td><td>id, name, phone, email, address, subdistrict, latitude, longitude</td><td>FK → service_orders</td></tr>
+    <tr><td><strong>technicians</strong></td><td>Technician</td><td>id, name, phone, skill, status, rating, experience, avatar</td><td>FK → service_orders</td></tr>
+    <tr><td><strong>service_orders</strong></td><td>ServiceOrder</td><td>id, booking_code, customer_id, technician_id, service_date, status, total_price, ac_type, units, latitude, longitude, map_url</td><td>PK</td></tr>
+    <tr><td><strong>payments</strong></td><td>Payment</td><td>id, order_id, amount, payment_method, payment_status, payment_date</td><td>FK → service_orders</td></tr>
+    <tr><td><strong>service_reports</strong></td><td>ServiceReport</td><td>id, order_id, technician_id, cleaning_result, problem_found, gas_psi_before, gas_psi_after, electric_current, completed_at</td><td>FK → service_orders</td></tr>
+    <tr><td><strong>admins</strong></td><td>Admin</td><td>id, name, username, password, phone, email</td><td>–</td></tr>
+  </table>
+
+  <h2>2.6 โครงสร้างไฟล์และโมดูล</h2>
+  <div class="code-block">
+air_cleaning_system_pro/<br>
+├── 📄 index.php              <span class="code-comment">← Customer Portal + จองคิว</span><br>
+├── 📄 booking_action.php     <span class="code-comment">← Controller รับ POST การจอง</span><br>
+├── 📄 receipt.php            <span class="code-comment">← ออกบิล/ใบเสร็จดิจิทัล</span><br>
+├── 📄 track.php              <span class="code-comment">← ตรวจสอบสถานะการจอง</span><br>
+├── 📁 classes/               <span class="code-comment">← OOP Domain Classes</span><br>
+│   ├── User.php              <span class="code-comment">← Abstract Base Class</span><br>
+│   ├── Customer.php          <span class="code-comment">← extends User</span><br>
+│   ├── Technician.php        <span class="code-comment">← extends User</span><br>
+│   ├── Admin.php             <span class="code-comment">← extends User</span><br>
+│   ├── AirConditioner.php    <span class="code-comment">← Entity Class</span><br>
+│   ├── ServiceOrder.php      <span class="code-comment">← Core Aggregate</span><br>
+│   ├── Payment.php           <span class="code-comment">← Entity Class</span><br>
+│   ├── ServiceReport.php     <span class="code-comment">← Entity Class</span><br>
+│   ├── BookingManager.php    <span class="code-comment">← Service Layer</span><br>
+│   └── DashboardAnalytics.php<span class="code-comment">← Analytics Service</span><br>
+├── 📁 admin/                 <span class="code-comment">← Admin Dashboard</span><br>
+│   ├── index.php, login.php, logout.php<br>
+├── 📁 config/database.php    <span class="code-comment">← PDO Connection</span><br>
+└── 📄 database.sql           <span class="code-comment">← Database Schema</span>
+  </div>
+</div>
+
+<!-- SECTION 3: OOP -->
+<div class="section-divider">
+  <div class="section-number">3</div>
+  <div class="section-title-big">OOP</div>
+  <div class="section-subtitle-big">Object-Oriented Programming<br>การเขียนโปรแกรมเชิงวัตถุ</div>
+</div>
+
+<div class="content-page">
+  <h1>ส่วนที่ 3: OOP – Object-Oriented Programming (การเขียนโปรแกรมเชิงวัตถุ)</h1>
+
+  <h2>3.1 หลักการ 4 ประการของ OOP ในระบบ AirCare Pro</h2>
+  <table>
+    <tr><th>#</th><th>หลักการ</th><th>ภาษาอังกฤษ</th><th>คำอธิบาย</th><th>ตัวอย่างในระบบ</th></tr>
+    <tr><td>1</td><td><strong>การห่อหุ้ม</strong></td><td>Encapsulation</td><td>ซ่อน attributes ด้วย private/protected เปิดผ่าน getter/setter</td><td>ทุก class ใช้ private attributes + public getters</td></tr>
+    <tr><td>2</td><td><strong>การสืบทอด</strong></td><td>Inheritance</td><td>คลาสลูกรับคุณสมบัติจากคลาสแม่</td><td>Customer, Technician, Admin extends User</td></tr>
+    <tr><td>3</td><td><strong>พหุสัณฐาน</strong></td><td>Polymorphism</td><td>Method เดียวกันทำงานต่างกันตามคลาส</td><td>getRole() แต่ละคลาสคืนค่าต่างกัน</td></tr>
+    <tr><td>4</td><td><strong>การซ่อนรายละเอียด</strong></td><td>Abstraction</td><td>ซ่อนรายละเอียดภายใน แสดงเฉพาะสิ่งที่จำเป็น</td><td>Abstract class User + Service Layer BookingManager</td></tr>
+  </table>
+
+  <h2>3.2 Encapsulation – การห่อหุ้มข้อมูล</h2>
+  <div class="principle-card">
+    <div class="principle-title">🔒 Encapsulation ในคลาส Customer</div>
+    <p>ทุก attribute ถูกประกาศเป็น <strong>private</strong> ไม่สามารถเข้าถึงโดยตรงจากภายนอก ต้องผ่าน getter/setter เท่านั้น</p>
+  </div>
+  <div class="code-block">
+<span class="code-keyword">class</span> <span class="code-class">Customer</span> <span class="code-keyword">extends</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-comment">// ❌ ภายนอกไม่สามารถเข้าถึงได้โดยตรง</span><br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">private</span> string $address;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">private</span> float $latitude;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">private</span> float $longitude;<br>
+<br>
+&nbsp;&nbsp;&nbsp;<span class="code-comment">// ✅ ต้องเข้าถึงผ่าน getter (อ่านอย่างเดียว)</span><br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getLatitude</span>(): float {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> $this->latitude;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;<span class="code-comment">// ✅ ปรับค่าพิกัดผ่าน setter</span><br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">setCoordinates</span>(float $lat, float $lng): void {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->latitude = $lat;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->longitude = $lng;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;<span class="code-comment">// ✅ Business Logic ซ่อนอยู่ใน method</span><br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getGoogleMapsUrl</span>(): string {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"https://www.google.com/maps?q={$this->latitude},{$this->longitude}"</span>;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}
+  </div>
+
+  <h2>3.3 Inheritance – การสืบทอดคลาส</h2>
+  <div class="principle-card">
+    <div class="principle-title">🧬 Inheritance – User เป็น Abstract Base Class</div>
+    <p>คลาส <strong>User</strong> เป็น Abstract Class กำหนดโครงสร้างพื้นฐาน คลาสลูก 3 คลาสสืบทอดและขยายความสามารถ</p>
+  </div>
+  <div class="code-block">
+<span class="code-comment">// คลาสแม่ (Abstract)</span><br>
+<span class="code-access">abstract</span> <span class="code-keyword">class</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">protected</span> ?int $id;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">protected</span> string $name;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">protected</span> string $phone;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">protected</span> ?string $email;<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">abstract</span> <span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getRole</span>(): string; <span class="code-comment">// บังคับ implement</span><br>
+}<br>
+<br>
+<span class="code-keyword">class</span> <span class="code-class">Customer</span> <span class="code-keyword">extends</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getRole</span>(): string { <span class="code-keyword">return</span> <span class="code-string">'Customer'</span>; }<br>
+}<br>
+<br>
+<span class="code-keyword">class</span> <span class="code-class">Technician</span> <span class="code-keyword">extends</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getRole</span>(): string { <span class="code-keyword">return</span> <span class="code-string">'Technician'</span>; }<br>
+}<br>
+<br>
+<span class="code-keyword">class</span> <span class="code-class">Admin</span> <span class="code-keyword">extends</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getRole</span>(): string { <span class="code-keyword">return</span> <span class="code-string">'Admin'</span>; }<br>
+}
+  </div>
+</div>
+
+<div class="content-page">
+  <h2>3.4 Polymorphism – พหุสัณฐาน</h2>
+  <div class="principle-card">
+    <div class="principle-title">🎭 Polymorphism – Method เดียว ผลลัพธ์ต่างกัน</div>
+    <p>getRole() ถูก override ในทุกคลาสลูก และ getStatusBadge() ใน ServiceOrder ทำงานต่างกันตาม state ปัจจุบัน</p>
+  </div>
+  <div class="code-block">
+<span class="code-comment">// Polymorphism: getRole() – ผลลัพธ์ต่างกันตามคลาส</span><br>
+$users = [<span class="code-keyword">new</span> <span class="code-class">Customer</span>(...), <span class="code-keyword">new</span> <span class="code-class">Technician</span>(...), <span class="code-keyword">new</span> <span class="code-class">Admin</span>(...)];<br>
+<span class="code-keyword">foreach</span> ($users <span class="code-keyword">as</span> $user) {<br>
+&nbsp;&nbsp;&nbsp;echo $user-><span class="code-method">getRole</span>();  <span class="code-comment">// Customer / Technician / Admin</span><br>
+}<br>
+<br>
+<span class="code-comment">// Polymorphism: getStatusBadge() ใน ServiceOrder – เปลี่ยนตาม state</span><br>
+<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getStatusBadge</span>(): string {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-keyword">match</span> ($this->status) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'รอดำเนินการ'</span>   => <span class="code-string">'&lt;span class="badge-warning"&gt;🕒 รอดำเนินการ&lt;/span&gt;'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'นัดหมายแล้ว'</span>   => <span class="code-string">'&lt;span class="badge-info"&gt;📅 นัดหมายแล้ว&lt;/span&gt;'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'กำลังดำเนินการ'</span> => <span class="code-string">'&lt;span class="badge-primary"&gt;🔧 ดำเนินการ&lt;/span&gt;'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'เสร็จสิ้น'</span>     => <span class="code-string">'&lt;span class="badge-success"&gt;✓ เสร็จสิ้น&lt;/span&gt;'</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'ยกเลิก'</span>        => <span class="code-string">'&lt;span class="badge-danger"&gt;✕ ยกเลิก&lt;/span&gt;'</span>,<br>
+&nbsp;&nbsp;&nbsp;};<br>
+}
+  </div>
+
+  <h2>3.5 Abstraction – การซ่อนรายละเอียด</h2>
+  <div class="principle-card">
+    <div class="principle-title">🎯 Abstraction – Abstract Class และ Service Layer</div>
+    <p>ผู้ใช้งาน BookingManager ไม่ต้องรู้รายละเอียด SQL ภายใน เพียงเรียก method ที่มีความหมายชัดเจน</p>
+  </div>
+  <div class="code-block">
+<span class="code-comment">// Abstraction ระดับ 1: Abstract Class บังคับ interface</span><br>
+<span class="code-access">abstract</span> <span class="code-keyword">class</span> <span class="code-class">User</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">abstract</span> <span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">getRole</span>(): string;<br>
+}<br>
+<br>
+<span class="code-comment">// Abstraction ระดับ 2: Service Layer ซ่อน SQL</span><br>
+<span class="code-keyword">class</span> <span class="code-class">BookingManager</span> {<br>
+&nbsp;&nbsp;&nbsp;<span class="code-access">public</span> <span class="code-keyword">function</span> <span class="code-method">createBooking</span>(array $data): array {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// ภายใน: สร้าง Customer → ServiceOrder → Payment → บันทึก DB</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$customer = $this-><span class="code-method">saveCustomer</span>($data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$order    = $this-><span class="code-method">saveOrder</span>($customer, $data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$payment  = $this-><span class="code-method">savePayment</span>($order);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> [<span class="code-string">'success'</span> => true, <span class="code-string">'booking_code'</span> => $order-><span class="code-method">getBookingCode</span>()];<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<br>
+<span class="code-comment">// Abstraction ระดับ 3: Static method ซ่อน logic คำนวณราคา</span><br>
+AirConditioner::<span class="code-method">getBasePriceForType</span>(<span class="code-string">'แอร์ติดผนัง'</span>); <span class="code-comment">// คืนค่า 500.0</span><br>
+AirConditioner::<span class="code-method">getBasePriceForType</span>(<span class="code-string">'แอร์สี่ทิศทาง (Cassette)'</span>); <span class="code-comment">// คืนค่า 1200.0</span>
+  </div>
+
+  <h2>3.6 สรุปการนำ OOP ไปใช้ในระบบ AirCare Pro</h2>
+  <div class="success-box">
+    <strong>✅ สรุป:</strong> ระบบ AirCare Pro ได้นำหลักการ OOA, OOD และ OOP ไปใช้อย่างครบถ้วนและเป็นระบบ ทำให้โค้ดมีความยืดหยุ่น บำรุงรักษาง่าย และขยายระบบได้ในอนาคต
+  </div>
+  <table>
+    <tr><th>หลักการ</th><th>การนำไปใช้ในระบบ</th><th>ไฟล์/คลาส</th><th>ประโยชน์</th></tr>
+    <tr><td><strong>OOA</strong></td><td>ระบุ Actors 3 บทบาท, Use Cases 21 รายการ, Domain Objects 9 คลาส</td><td>ทุก classes/</td><td>เข้าใจระบบก่อนเขียนโค้ด</td></tr>
+    <tr><td><strong>OOD</strong></td><td>3-Layer Architecture, Class Diagram, DB Schema ตรงกับ Object Model</td><td>classes/, config/, admin/</td><td>โครงสร้างชัดเจน</td></tr>
+    <tr><td><strong>Encapsulation</strong></td><td>private attributes + public getter/setter ทุก class</td><td>ทุก .php ใน classes/</td><td>ข้อมูลปลอดภัย</td></tr>
+    <tr><td><strong>Inheritance</strong></td><td>Customer, Technician, Admin extends User</td><td>User.php + ลูก 3 คลาส</td><td>ลดโค้ดซ้ำซ้อน</td></tr>
+    <tr><td><strong>Polymorphism</strong></td><td>getRole(), getStatusBadge() ทำงานต่างกันตาม state/class</td><td>User, ServiceOrder, Payment</td><td>ยืดหยุ่นสูง</td></tr>
+    <tr><td><strong>Abstraction</strong></td><td>Abstract class User + Service Layer BookingManager</td><td>User.php, BookingManager.php</td><td>ซ่อนความซับซ้อน</td></tr>
+  </table>
+
+  <div class="class-diagram" style="margin-top:30px;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:15px; flex-wrap:wrap;">
+      <div style="background:linear-gradient(135deg,#0f3460,#0288d1); color:white; padding:20px 30px; border-radius:12px; text-align:center; min-width:180px;">
+        <div style="font-size:20pt; margin-bottom:8px;">📊</div>
+        <div style="font-weight:bold; font-size:15pt;">OOA</div>
+        <div style="font-size:11pt; opacity:0.85;">วิเคราะห์ Domain<br>Actors &amp; Use Cases<br>Domain Objects</div>
+      </div>
+      <div style="font-size:30pt; color:#0288d1;">➡️</div>
+      <div style="background:linear-gradient(135deg,#0288d1,#00acc1); color:white; padding:20px 30px; border-radius:12px; text-align:center; min-width:180px;">
+        <div style="font-size:20pt; margin-bottom:8px;">🏗️</div>
+        <div style="font-weight:bold; font-size:15pt;">OOD</div>
+        <div style="font-size:11pt; opacity:0.85;">ออกแบบ Architecture<br>Class Diagram<br>DB Schema</div>
+      </div>
+      <div style="font-size:30pt; color:#00acc1;">➡️</div>
+      <div style="background:linear-gradient(135deg,#00695c,#00897b); color:white; padding:20px 30px; border-radius:12px; text-align:center; min-width:180px;">
+        <div style="font-size:20pt; margin-bottom:8px;">💻</div>
+        <div style="font-weight:bold; font-size:15pt;">OOP</div>
+        <div style="font-size:11pt; opacity:0.85;">เขียนโค้ด PHP<br>4 หลักการ<br>Classes &amp; Objects</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <p>📄 เอกสาร OOA OOD OOP – AirCare Pro ระบบจองคิวล้างเครื่องปรับอากาศ อำเภอบ้านโป่ง จังหวัดราชบุรี</p>
+    <p>จัดทำโดย: ทีมพัฒนาระบบ | PHP 8.x OOP + MySQL 8.0 | กันยายน 2569</p>
+  </div>
+</div>
+
+</body>
+</html>
